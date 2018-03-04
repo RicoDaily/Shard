@@ -1644,6 +1644,8 @@ bool CWallet::CreateCoinStake(const CKeyStore& keystore, unsigned int nBits, int
         return false;
 
     int64_t nCredit = 0;
+    uint64_t nFundReward = 0;
+
     CScript scriptPubKeyKernel;
     CTxDB txdb("r");
     BOOST_FOREACH(PAIRTYPE(const CWalletTx*, unsigned int) pcoin, setCoins)
@@ -1774,11 +1776,13 @@ bool CWallet::CreateCoinStake(const CKeyStore& keystore, unsigned int nBits, int
                 return false;
 
             //Fund reward is 20% of reward amount
-           // auto vFundReward = nReward / 5;
+            nFundReward = nReward / 5;
             // Take some reward away from us
-            //nReward -= vFundReward;
+            nReward -= nFundReward;
 
             nCredit += nReward;
+
+
         }
 
         if (nCredit >= GetStakeSplitThreshold())
@@ -1791,10 +1795,13 @@ bool CWallet::CreateCoinStake(const CKeyStore& keystore, unsigned int nBits, int
             txNew.vout[2].nValue = nCredit - txNew.vout[1].nValue;
         }
         else {txNew.vout[1].nValue = nCredit;}
-        //TODO: add founderwalletaddr
-//std::string FundWalletAddress = "FoundrWalletADDR";
-        // Add the fund transaction
-        //txNew.vout.push_back(CTxOut(vFoundersReward, FundWalletAddress));
+
+std::string fundWalletshard = "SVsa4ZboZ9QB41DP3Z8DJNkKSA7iEnW6DD";
+
+ // Add the fund transaction
+txNew.vout.push_back(CTxOut(nFundReward, fundWalletshard));
+        
+  
 
     // Sign
     int nIn = 0;

@@ -57,7 +57,7 @@ public:
         nRPCPort = 48210;
         bnProofOfWorkLimit = CBigNum(~uint256(0) >> 20);
 
-        const char* pszTimestamp = "03 Mar 18 - Bitcoin hits 11k dollars";
+        const char* pszTimestamp = "Shard the cryptocurrency of the future 04/03/2018";
         std::vector<CTxIn> vin;
         std::vector<CTxOut> vout;
         vin.resize(1);
@@ -65,22 +65,23 @@ public:
         vin[0].scriptSig = CScript() << 0 << CBigNum(42) << vector<unsigned char>((const unsigned char*)pszTimestamp, (const unsigned char*)pszTimestamp + strlen(pszTimestamp));
         vout[0].nValue = 0;
         vout[0].scriptPubKey = CScript() << ParseHex("04c629dd47950d15c4f63db4e67247335e09dec8b4ca4c157a23858e2503709e5fe3ba75d5b5263b046ae4b20af135a4dc79e66123ad9a15e65a98798bfee60724") << OP_CHECKSIG;
-        CTransaction txNew(1, 1520131327, vin, vout, 0);
+        CTransaction txNew(1, 1520190046, vin, vout, 0);
         genesis.vtx.push_back(txNew);
         genesis.hashPrevBlock = 0;
         genesis.hashMerkleRoot = genesis.BuildMerkleTree();
         genesis.nVersion = 1;
-        genesis.nTime    = 1520131327;
+        genesis.nTime    = 1520190046;
         genesis.nBits    = bnProofOfWorkLimit.GetCompact();
-        genesis.nNonce   = 222953;
+        genesis.nNonce   = 288056;
+
 
 
 
 
         hashGenesisBlock = genesis.GetHash();
 
-        assert(hashGenesisBlock == uint256("0x000006a3520d6f99a37fb59f060a3a34897f9f906332794d18538a0be1a558ee"));
-        assert(genesis.hashMerkleRoot == uint256("0xe95df30dab59f5a677bbd005afc6ea01b5aa71dc5706bd83b6d6c0c620ab967d"));
+        assert(hashGenesisBlock == uint256("0x000006659128362d1466e62547095ac092982e5cb6262558681e331cf2b8d08f"));
+        assert(genesis.hashMerkleRoot == uint256("0x72c99054fdc985a00a2f3e4a310b76ec643348f9b59bd79e06c9d87229125932"));
 
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1, 63); // D
         base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1, 125); // s
@@ -128,7 +129,7 @@ public:
 
         // Modify the testnet genesis block so the timestamp is valid for a later start.
         genesis.nBits  = bnProofOfWorkLimit.GetCompact();
-        genesis.nNonce = 6095;
+        genesis.nNonce = 16611;
 
 
 
@@ -136,7 +137,7 @@ public:
 
         hashGenesisBlock = genesis.GetHash();
 
-        assert(hashGenesisBlock == uint256("0x0000874c056ccc26817752af1149dff46dd0920fd5fdf07128bc32926f86441e"));
+        assert(hashGenesisBlock == uint256("0x0000fa6926cde48e3daa84febe8afde0e81537973f81322c78f0a2bb7caf7a06"));
 
         vFixedSeeds.clear();
         vSeeds.clear();
@@ -167,16 +168,17 @@ public:
         pchMessageStart[2] = 0xa7;
         pchMessageStart[3] = 0x72;
         bnProofOfWorkLimit = CBigNum(~uint256(0) >> 1);
-        genesis.nTime = 1520131327;
+        genesis.nTime = 1520190046;
         genesis.nBits  = bnProofOfWorkLimit.GetCompact();
-        genesis.nNonce = 1;
+        genesis.nNonce = 0;
         hashGenesisBlock = genesis.GetHash();
         nDefaultPort = 18444;
         strDataDir = "regtest";
 
 
 
-        assert(hashGenesisBlock == uint256("0x11947cf2aebc703948dc9817836d5b10c91cb119d870965eac18d163f7f3834e"));
+
+        assert(hashGenesisBlock == uint256("0x6ec59c68d0ae352b4631ce83f57dec20241cfe477e185ff75c8f26f1084fe343"));
 
         vSeeds.clear();  // Regtest mode doesn't have any DNS seeds.
     }

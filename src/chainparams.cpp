@@ -48,38 +48,41 @@ public:
         // The message start string is designed to be unlikely to occur in normal data.
         // The characters are rarely used upper ASCII, not valid as UTF-8, and produce
         // a large 4-byte int at any alignment.
-        pchMessageStart[0] = 0x22;
-        pchMessageStart[1] = 0x3f;
-        pchMessageStart[2] = 0x44;
-        pchMessageStart[3] = 0x10;
-        vAlertPubKey = ParseHex("043ade2afa52ec7327b87ea37d59c57cf6b642644ea44653abc6613884ed9c81f4186916f94b32081fa669e3496fd5c5a364ca7aa5b2fa5f494e36fb79f951fb1a");
+        pchMessageStart[0] = 0x57;
+        pchMessageStart[1] = 0x7f;
+        pchMessageStart[2] = 0x21;
+        pchMessageStart[3] = 0x17;
+        vAlertPubKey = ParseHex("04cdd273904fee60d22ac8b52ebbb77e82b9acb37a134c83531987f3f0ee4291d0047ae55edeb2609d57e0200aba8297bf343384db4ed2cbaff1668921109ed8e0");
         nDefaultPort = 48200;
         nRPCPort = 48210;
         bnProofOfWorkLimit = CBigNum(~uint256(0) >> 20);
 
-        const char* pszTimestamp = "21 Jan 18 - Bitconnect Ponzi Scheme - No Sympathy From Crypto Community";
+        const char* pszTimestamp = "03 Mar 18 - Bitcoin hits 11k dollars";
         std::vector<CTxIn> vin;
         std::vector<CTxOut> vout;
         vin.resize(1);
         vout.resize(1);
         vin[0].scriptSig = CScript() << 0 << CBigNum(42) << vector<unsigned char>((const unsigned char*)pszTimestamp, (const unsigned char*)pszTimestamp + strlen(pszTimestamp));
         vout[0].nValue = 0;
-        vout[0].scriptPubKey = CScript() << ParseHex("0486bce1bac0d543f104cbff2bd23680056a3b9ea05e1137d2ff90eeb5e08472eb500322593a2cb06fbf8297d7beb6cd30cb90f98153b5b7cce1493749e41e0284") << OP_CHECKSIG;
-        CTransaction txNew(1, 1516649039, vin, vout, 0);
+        vout[0].scriptPubKey = CScript() << ParseHex("04c629dd47950d15c4f63db4e67247335e09dec8b4ca4c157a23858e2503709e5fe3ba75d5b5263b046ae4b20af135a4dc79e66123ad9a15e65a98798bfee60724") << OP_CHECKSIG;
+        CTransaction txNew(1, 1520131327, vin, vout, 0);
         genesis.vtx.push_back(txNew);
         genesis.hashPrevBlock = 0;
         genesis.hashMerkleRoot = genesis.BuildMerkleTree();
         genesis.nVersion = 1;
-        genesis.nTime    = 1516649039;
+        genesis.nTime    = 1520131327;
         genesis.nBits    = bnProofOfWorkLimit.GetCompact();
-        genesis.nNonce   = 1713565;
+        genesis.nNonce   = 222953;
+
+
+
 
         hashGenesisBlock = genesis.GetHash();
 
-        assert(hashGenesisBlock == uint256("0x00000245cf3c169c3b5064444c169efae6c334025f0fd63eaad475b83ffb6ba8"));
-        assert(genesis.hashMerkleRoot == uint256("0x5976ec763cc9faa6e8483581c872235dfd4d7e3b621e62b301caf435221a802b"));
+        assert(hashGenesisBlock == uint256("0x000006a3520d6f99a37fb59f060a3a34897f9f906332794d18538a0be1a558ee"));
+        assert(genesis.hashMerkleRoot == uint256("0xe95df30dab59f5a677bbd005afc6ea01b5aa71dc5706bd83b6d6c0c620ab967d"));
 
-        base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1, 30); // D
+        base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1, 63); // D
         base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1, 125); // s
         base58Prefixes[SECRET_KEY] =     std::vector<unsigned char>(1, 45); // K
         base58Prefixes[EXT_PUBLIC_KEY] = boost::assign::list_of(0x04)(0x88)(0xB2)(0x1E).convert_to_container<std::vector<unsigned char> >();
@@ -113,22 +116,27 @@ public:
         // The message start string is designed to be unlikely to occur in normal data.
         // The characters are rarely used upper ASCII, not valid as UTF-8, and produce
         // a large 4-byte int at any alignment.
-        pchMessageStart[0] = 0xee;
-        pchMessageStart[1] = 0x20;
-        pchMessageStart[2] = 0x1f;
-        pchMessageStart[3] = 0x40;
+        pchMessageStart[0] = 0xe7;
+        pchMessageStart[1] = 0x49;
+        pchMessageStart[2] = 0x11;
+        pchMessageStart[3] = 0x4a;
         bnProofOfWorkLimit = CBigNum(~uint256(0) >> 16);
-        vAlertPubKey = ParseHex("04a2a8b02ad14cdb98f0db4ff2b956514993ec5961c304acc85e519d95e2453320b67991bced2b6eadf6996b9c36dffec6b21f090bb548500e881c9d0b87d3f7da");
-        nDefaultPort = 58200;
-        nRPCPort = 27058;
+        vAlertPubKey = ParseHex("04c629dd47950d15c4f63db4e67247335e09dec8b4ca4c157a23858e2503709e5fe3ba75d5b5263b046ae4b20af135a4dc79e66123ad9a15e65a98798bfee60724");
+        nDefaultPort = 48300;
+        nRPCPort = 48310;
         strDataDir = "testnet";
 
         // Modify the testnet genesis block so the timestamp is valid for a later start.
         genesis.nBits  = bnProofOfWorkLimit.GetCompact();
-        genesis.nNonce = 309047;
+        genesis.nNonce = 6095;
+
+
+
+
+
         hashGenesisBlock = genesis.GetHash();
 
-        assert(hashGenesisBlock == uint256("0x0000035f11502fdfc1d3224dd57f3cb683d3d231b7f11625e9e32ccfb6a81bb0"));
+        assert(hashGenesisBlock == uint256("0x0000874c056ccc26817752af1149dff46dd0920fd5fdf07128bc32926f86441e"));
 
         vFixedSeeds.clear();
         vSeeds.clear();
@@ -154,19 +162,21 @@ static CTestNetParams testNetParams;
 class CRegTestParams : public CTestNetParams {
 public:
     CRegTestParams() {
-        pchMessageStart[0] = 0x44;
-        pchMessageStart[1] = 0x15;
-        pchMessageStart[2] = 0xad;
-        pchMessageStart[3] = 0x32;
+        pchMessageStart[0] = 0x47;
+        pchMessageStart[1] = 0x55;
+        pchMessageStart[2] = 0xa7;
+        pchMessageStart[3] = 0x72;
         bnProofOfWorkLimit = CBigNum(~uint256(0) >> 1);
-        genesis.nTime = 1411111111;
+        genesis.nTime = 1520131327;
         genesis.nBits  = bnProofOfWorkLimit.GetCompact();
-        genesis.nNonce = 196639;
+        genesis.nNonce = 1;
         hashGenesisBlock = genesis.GetHash();
         nDefaultPort = 18444;
         strDataDir = "regtest";
 
-        assert(hashGenesisBlock == uint256("0x4249d674af8a1d999d570333e7d5868e54f6c57706bbdf7d41bdd3946a561d70"));
+
+
+        assert(hashGenesisBlock == uint256("0x11947cf2aebc703948dc9817836d5b10c91cb119d870965eac18d163f7f3834e"));
 
         vSeeds.clear();  // Regtest mode doesn't have any DNS seeds.
     }

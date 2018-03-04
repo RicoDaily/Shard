@@ -1,1 +1,2 @@
-# List of fixed seed nodes for testnet
+185.47.61.101:48200
+185.47.62.70:48200

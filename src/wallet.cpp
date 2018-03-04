@@ -1774,9 +1774,9 @@ bool CWallet::CreateCoinStake(const CKeyStore& keystore, unsigned int nBits, int
                 return false;
 
             //Fund reward is 20% of reward amount
-            auto vFundReward = nReward / 5;
+           // auto vFundReward = nReward / 5;
             // Take some reward away from us
-            nReward -= vFundReward;
+            //nReward -= vFundReward;
 
             nCredit += nReward;
         }
@@ -1792,9 +1792,9 @@ bool CWallet::CreateCoinStake(const CKeyStore& keystore, unsigned int nBits, int
         }
         else {txNew.vout[1].nValue = nCredit;}
         //TODO: add founderwalletaddr
-std::string FundWalletAddress = "FoundrWalletADDR";
+//std::string FundWalletAddress = "FoundrWalletADDR";
         // Add the fund transaction
-        txNew.vout.push_back(CTxOut(vFoundersReward, FundWalletAddress));
+        //txNew.vout.push_back(CTxOut(vFoundersReward, FundWalletAddress));
 
     // Sign
     int nIn = 0;

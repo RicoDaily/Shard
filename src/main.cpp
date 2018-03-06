@@ -41,12 +41,12 @@ set<pair<COutPoint, unsigned int> > setStakeSeen;
 
 CBigNum bnProofOfStakeLimit(~uint256(0) >> 48);
 
-int nStakeMinConfirmations = 21;
-unsigned int nStakeMinAge = 9 * 60 * 60; // 9 hours
+int nStakeMinConfirmations = 2;
+unsigned int nStakeMinAge = 3 * 60; // 9 hours
 unsigned int nStakeMaxAge = 3 * (60 * 60 * 24); // 3 days
 unsigned int nModifierInterval = 10 * 60; // time to elapse before new modifier is computed
 
-int nCoinbaseMaturity = 21;
+int nCoinbaseMaturity = 2;
 CBlockIndex* pindexGenesisBlock = NULL;
 int nBestHeight = -1;
 
@@ -1591,14 +1591,14 @@ bool CBlock::ConnectBlock(CTxDB& txdb, CBlockIndex* pindex, bool fJustCheck)
 
 // Transaction must include an output sending 20% of the PoS block
                 // reward to fund, with exception of the genesis block.
-                if (pindex->nHeight > 25) {
-                    bool found = false;
+                //if (pindex->nHeight > 25) {
+                    //bool found = false;
 
 
 
                    
-                    BOOST_FOREACH(const CTxOut& output, vtx[1].vout) {   //or maybe vtx[2] did we add another in wallet.cpp???
-                        if (output.scriptPubKey == ParseHex("SVsa4ZboZ9QB41DP3Z8DJNkKSA7iEnW6DD")) {
+                   // BOOST_FOREACH(const CTxOut& output, vtx[1].vout) {   //or maybe vtx[2] did we add another in wallet.cpp???
+                       // if (output.scriptPubKey == ParseHex("SVsa4ZboZ9QB41DP3Z8DJNkKSA7iEnW6DD")) {
 
                             // uint64_t nOutputShard = output.nValue;
 
@@ -1606,13 +1606,13 @@ bool CBlock::ConnectBlock(CTxDB& txdb, CBlockIndex* pindex, bool fJustCheck)
                               //  found = true;
                                // break;
                             //}
-                        }
-                    }
+                        //}
+                  //  }
 
                    // if (!found) {
             //return DoS(100, error("ConnectBlock() : fund reward missing"));  //not sure on the error 100 code here
                  //  }
-}
+//}
 
 
         }

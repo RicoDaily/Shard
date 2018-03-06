@@ -1775,13 +1775,12 @@ bool CWallet::CreateCoinStake(const CKeyStore& keystore, unsigned int nBits, int
             if (nReward <= 0)
                 return false;
 
-            //Fund reward is 20% of reward amount
+             //Fund reward is 20% of reward amount
             nFundReward = nReward / 5;
             // Take some reward away from us
-            nReward -= nFundReward;
+            nReward = nReward - nFundReward;
 
             nCredit += nReward;
-
 
         }
 
@@ -1796,10 +1795,14 @@ bool CWallet::CreateCoinStake(const CKeyStore& keystore, unsigned int nBits, int
         }
         else {txNew.vout[1].nValue = nCredit;}
 
-std::string fundWalletshard = "SVsa4ZboZ9QB41DP3Z8DJNkKSA7iEnW6DD";
 
- // Add the fund transaction
-txNew.vout.push_back(CTxOut(nFundReward, fundWalletshard));
+CBitcoinAddress addressFundShard("SYgqFCjQHYJ8sstFERXKK8HGdX7KT5X85d");
+CScript scriptFundShardKey;
+scriptFundShardKey.SetDestination(addressFundShard.Get());
+
+
+    // Add the fund transaction
+     txNew.vout.push_back(CTxOut(nFundReward, scriptFundShardKey));
         
   
 
